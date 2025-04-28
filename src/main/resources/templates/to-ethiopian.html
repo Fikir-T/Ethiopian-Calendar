@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Gregorian to Ethiopian Date Converter</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <h2>calend<span>ar</span></h2>
+    <section id="services" class="services">
+        <div th:if="${ethYear}" class="service-container">
+            <!-- <h2>Result</h2> -->
+            <div class="service-box">
+                <p><b>Ethiopian Date: </b> <span th:text="${ weekday } " /> </span> <span th:text="${ethDay}" /> / <span
+                        th:text="${ethMonth}" /> / <span th:text="${ethYear}" /> </p>
+            </div>
+            <div class="service-box">
+                <p><b>Gregorian:</b> <span th:text="${gDay}" /> / <span th:text="${gMonth}" /> / <span
+                        th:text="${gYear}" /></p>
+            </div>
+
+        </div>
+        <h2>
+            <a th:href="@{/to-ethiopian}">
+                <button class="btn">Reset</button>
+            </a>
+        </h2>
+
+    </section>
+    <h2>Gregorian ➡<span>Ethiopian Date Converter</span> </h2>
+    <section id="contact" class="contact">
+        <form action="/to-ethiopian" method="get">
+            <div class="input-group-2">
+                <div class="input-box">
+                    <label>Year:</label>
+                    <input type="number" name="year" placeholder="Year" />
+                    <label>Month:</label>
+                    <input type="number" name="month" placeholder="Month" />
+                </div>
+            </div>
+            <div class="input-group-2">
+                <div class="input-box">
+                    <label>Day:</label>
+                    <input type="number" name="day" placeholder="Day" />
+                    <button type="submit" class="btn">Convert</button>
+                </div>
+            </div>
+            <!-- </div> -->
+        </form>
+    </section>
+</body>
+
+</html>

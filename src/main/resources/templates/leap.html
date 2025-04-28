@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ethiopian Leap Year Checker</title>
+</head>
+<body>
+    <h2>Check if a year is a leap year in the Ethiopian Calendar</h2>
+
+    <form action="/check" method="post">
+        <label for="year">Enter Ethiopian year:</label>
+        <input type="number" id="year" name="year" required>
+        <button type="submit">Check</button>
+    </form>
+
+    <p th:if="${result != null}" th:text="${result}"></p>
+</body>
+</html>

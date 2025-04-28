@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weekday Result</title>
+</head>
+<body>
+    <h2>Result</h2>
+    <p th:text="'Ethiopian date ' + ${date} + ' is  ' + ${weekday}">Result here</p>
+    <a th:href="@{/ethiopian}">Back</a>
+</body>
+</html>

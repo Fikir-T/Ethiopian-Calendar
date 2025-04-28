@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ethiopian Calendar</title>
+</head>
+<body>
+    <h2>Check Ethiopian Weekday</h2>
+    <form action="#" th:action="@{/ethiopian}" method="post">
+        <label>Year: <input type="number" name="year" required /></label><br/>
+        <label>Month: <input type="number" name="month" required /></label><br/>
+        <label>Day: <input type="number" name="day" required /></label><br/>
+        <button type="submit">Find Weekday</button>
+    </form>
+</body>
+</html>
