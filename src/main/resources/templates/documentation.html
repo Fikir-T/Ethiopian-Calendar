@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/card.css}">
+    <script defer th:src="@{/js/copy.js}"></script>
+    
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -15,12 +20,29 @@
         <nav>
             <ul class="nav">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">SomeClass</a></li>
-                <li><a href="#Portfolio">SomeClass</a></li>
-                <li><a href="#about">SomeClass</a></li>
-                <li><a href="#contact">SomeClass</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
+    <section>
+       <p>
+        so this is the documentation huh!
+        this project is done using spring boot and thymeleaf for rendering and java for backend and html css for frontend.
+
+       </p>
+       <section class="service-box">
+        public static EthiopianDate getEthiopianDate(int gYear, int gMonth, int gDay) {
+            int todayJDN = toJulianDayNumber(gYear, gMonth, gDay);
+        }
+       </section>
+
+    </section>
+
+
+
 </body>
+
 </html>
