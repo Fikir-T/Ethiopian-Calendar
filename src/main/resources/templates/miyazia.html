@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weekdays</title>
+</head>
+<body>
+    <h1>Weekdays for the Month</h1>
+    <ul>
+        <li th:each="day : ${days}" th:text="${day}"></li>
+        <li th:each="weekday : ${weekdays}" th:text="${weekday}"></li>
+    </ul>
+</body>
+</html>
