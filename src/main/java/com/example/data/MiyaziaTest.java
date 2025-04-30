@@ -29,6 +29,23 @@ public class MiyaziaTest {
         ArrayList<Integer> days = new ArrayList<>();
         // int year = 2023;
         // int month = 13;
+        ArrayList<String> months = new ArrayList<>();
+        months.add("መስከረም");
+        months.add("ጥቅምት");
+        months.add("ህዳር");
+        months.add("ታኅሣሥ");
+        months.add("ጥር");
+        months.add("የካቲት");
+        months.add("መጋቢት");
+        months.add("ሚያዝያ");
+        months.add("ግንቦት");
+        months.add("ሰኔ");
+        months.add("ሐምሌ");
+        months.add("ነሃሴ");
+        months.add("ጳጉሜን");
+
+        // Adding months to model
+        model.addAttribute("months", months);
         LocalDate today = LocalDate.now();
         ToEthiopian.EthiopianDate etdate = ToEthiopian.getEthiopianDate(today.getYear(), today.getMonthValue(),
                 today.getDayOfMonth());
@@ -60,14 +77,16 @@ public class MiyaziaTest {
             days.add(day);
             entries.add(new DayEntry(day, weekday));
         }
-        
+
         int offset = EthiopianCalendar.getDayOffset(year, month);
         int totalCells = (int) Math.ceil((offset + ken) / 7.0) * 7;
         model.addAttribute("dayOffset", offset);
         model.addAttribute("days", days);
         model.addAttribute("weekdays", weekdays);
         model.addAttribute("entries", entries);
-        model.addAttribute("totalCells", totalCells);  
+        model.addAttribute("totalCells", totalCells);
+        model.addAttribute("selectedYear", year);
+        model.addAttribute("selectedMonth", month);
         return "miyazia";
     }
 }
