@@ -16,6 +16,7 @@ html {
 body {
     background-color: #0a0f1c;
     color: #ffffff;
+    margin: 0;
 }
 section {
     min-height: 100vh;
@@ -173,49 +174,51 @@ p {
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.4;
-    flex-grow: 1; /* Allows text to take equal space */
+    /* flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
-.services {
-    background-color: #121829;
-}
-.services h2 {
-    margin-bottom: 5rem;
-}
-.service-container {
+/* .service-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 2rem;
+    padding: 2rem;
 }
 
-.service-container .service-box {
-    flex: 1 1 30rem;
+
+.service-box {
+    display: inline-block;
     background: #001d3d;
-    padding: 6rem 2rem 6rem;
+    padding: 2rem 3rem;
     border-radius: 2rem;
     text-align: center;
     border: 0.3rem solid #001d3d;
     transition: 0.3s ease;
+    width: fit-content;
+    max-width: 100%;
 }
-.service-container .service-box:hover {
+
+.service-box:hover {
     border-color: #00aaff;
     transform: scale(1.02);
 }
-.service-box i {
-    font-size: 7rem;
-    color: #00aaff;
-}
-.service-box h3 {
-    font-size: 2.6rem;
-}
+
+
 .service-box p {
+    all: unset;
     font-size: 1.6rem;
-    margin: 1rem 0 3rem;
-}
+    color: #fff;
+    margin: 1rem 0;
+    display: block;
+    line-height: 1.4;
+    text-align: center;
+} */
+
+
+
 
 .portfolio {
     background-color: #0a0f1c;
@@ -724,3 +727,40 @@ p {
     color: #f8fafc;
   }
   
+
+  .service-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+
+.service-box {
+    display: inline-block;
+    background: #001d3d;
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 0.3rem solid #001d3d;
+    transition: 0.3s ease;
+    width: auto;
+    max-width: 100%;
+    flex: 0 0 auto;
+}
+
+.service-box:hover {
+    border-color: #00aaff;
+    transform: scale(1.02);
+}
+.service-box p {
+    font-size: 1.6rem !important;
+    font-weight: 400 !important;
+    margin: 1rem 0;
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: 1.5;
+} 

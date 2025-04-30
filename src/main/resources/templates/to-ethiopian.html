@@ -4,11 +4,22 @@
 <head>
     <title>Gregorian to Ethiopian Date Converter</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        function validateForm() {
+            var year = document.forms["weekdayForm"]["year"].value;
+            var month = document.forms["weekdayForm"]["month"].value;
+            if (year == "" || month == "") {
+                alert("Both fields must be filled out.");
+                return false; 
+            }
+            return true; 
+        }
+    </script>
 </head>
 
 <body>
     <h2>calend<span>ar</span></h2>
-    <section id="services" class="services">
+    <!-- <section id="services" class="services"> -->
         <div th:if="${ethYear}" class="service-container">
             <!-- <h2>Result</h2> -->
             <div class="service-box">
@@ -27,22 +38,23 @@
             </a>
         </h2>
 
-    </section>
+    <!-- </section> -->
     <h2>Gregorian ➡<span>Ethiopian Date Converter</span> </h2>
     <section id="contact" class="contact">
-        <form action="/to-ethiopian" method="get">
+        <form action="/to-ethiopian" method="get" onsubmit="return validateForm()">
             <div class="input-group-2">
                 <div class="input-box">
-                    <label>Year:</label>
-                    <input type="number" name="year" placeholder="Year" />
+                    <label>Day:</label>
+                    <input type="number" name="day" placeholder="Day" required/>
                     <label>Month:</label>
-                    <input type="number" name="month" placeholder="Month" />
+                    <input type="number" name="month" placeholder="Month" required/>
                 </div>
             </div>
             <div class="input-group-2">
                 <div class="input-box">
-                    <label>Day:</label>
-                    <input type="number" name="day" placeholder="Day" />
+                    <label>Year:</label>
+                    <input type="number" name="year" placeholder="Year" required/>
+                    
                     <button type="submit" class="btn">Convert</button>
                 </div>
             </div>
