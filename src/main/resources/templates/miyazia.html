@@ -2,64 +2,137 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Miyazia Calendar</title>
-  <style>
-    table { border-collapse: collapse; width: 80%; margin: 20px auto; font-family: Arial, sans-serif; }
-    th, td { border: 1px solid #aaa; text-align: center; padding: 10px; width: 14.28%; height: 60px; }
-    th { background-color: #f0f0f0; }
-    .empty { background-color: #eee; }
-    form { text-align: center; margin: 20px; }
-    select, input[type="number"], button { font-size: 16px; padding: 6px 12px; margin: 0 5px; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script>
+        function validateForm() {
+            var year = document.forms["weekdayForm"]["year"].value;
+            var month = document.forms["weekdayForm"]["month"].value;
+            if (year == "" || month == "") {
+                alert("Both fields must be filled out.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        td {
+            border: 1px solid #838588;
+            text-align: center;
+            padding: 10px;
+            width: 14.28%;
+            height: 60px;
+        }
+
+        td span {
+            font-size: 18px;
+            
+            font-weight: bold;
+            color: #ffffff;
+            /* Optional: ensures visibility */
+        }
+
+
+        th {
+            background-color: #0a0f1c;
+            font-size: 20px;
+
+        }
+
+        .empty {
+            background-color: #12192a;
+        }
+
+        form {
+            text-align: center;
+            margin: 20px;
+        }
+
+        select,
+        input[type="number"],
+        /* button {
+            font-size: 16px;
+            padding: 6px 12px;
+            margin: 0 5px;
+        } */
+    </style>
 </head>
 
 <body>
+    <header>
+        <div class="logo">
+            <a th:href="@{/}" class="logo">Data <span>Structure</span> & Algorithm</a>
+        </div>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav>
+            <ul class="nav">
+                <li><a th:href="@{/miyazia}">Calendar</a></li>
+                <li><a th:href="@{/to-ethiopian}">Converter</a></li>
+                <li><a th:href="@{/leap}">Leap Year</a></li>
+                <li><a th:href="@{/ethiopian}">Weekday</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    <section id="contact" class="contact">
+        <h2 style="text-align: center;">Calen<span>dar</span></h2>
+        <h2>
+            <a th:href="@{/to-ethiopian}">
+                <button class="btn">Reset</button>
+            </a>
+        </h2>
+        <form action="/miyazia" method="get" onsubmit="return validateForm()">
 
-  <h2 style="text-align: center;">Calendar</h2>
+            <div class="input-box">
+                <label for="year">ዓመት:</label>
+                <input type="number" name="year" id="year" th:value="${selectedYear}" min="1" required />
+            </div>
+            <div class="select-box">
+                <label for="month">ወር:</label>
+                <select name="month" id="month" required>
+                    <option th:each="m, stat : ${months}" th:with="monthIndex=${stat.index + 1}"
+                        th:value="${monthIndex}" th:text="${m}" th:selected="${monthIndex == selectedMonth}">
+                    </option>
+                </select>
 
-  <!-- Navigation Form -->
-  <form action="/miyazia" method="get">
-    <label for="year">ዓመት:</label>
-    <input type="number"
-           name="year"
-           id="year"
-           th:value="${selectedYear}"
-           min="1"
-           required />
 
-    <label for="month">ወር:</label>
-    <select name="month" id="month" required>
-      <option th:each="m, stat : ${months}"
-              th:with="monthIndex=${stat.index + 1}"
-              th:value="${monthIndex}"
-              th:text="${m}"
-              th:selected="${monthIndex == selectedMonth}">
-      </option>
-    </select>
+            </div>
+            <button type="submit" class="btn">submit</button>
+        </form>
 
-    <button type="submit">submit</button>
-  </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>እሁድ</th>
+                    <th>ሰኞ</th>
+                    <th>ማክሰኞ</th>
+                    <th>ረቡዕ</th>
+                    <th>ሓሙስ</th>
+                    <th>አርብ</th>
+                    <th>ቅዳሜ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="biggerfont" th:each="week : ${#numbers.sequence(0, totalCells/7 - 1)}">
+                    <td th:each="daySlot : ${#numbers.sequence(0,6)}"
+                        th:with="idx=${week*7 + daySlot}, adj=${idx - dayOffset}"
+                        th:classappend="${idx < dayOffset} ? 'empty'">
+                        <span th:if="${idx >= dayOffset and adj < days.size()}" th:text="${days[adj]}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-  <!-- Calendar Table -->
-  <table>
-    <thead>
-      <tr>
-        <th>እሁድ</th><th>ሰኞ</th><th>ማክሰኞ</th>
-        <th>ረቡዕ</th><th>ሓሙስ</th><th>አርብ</th><th>ቅዳሜ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="week : ${#numbers.sequence(0, totalCells/7 - 1)}">
-        <td th:each="daySlot : ${#numbers.sequence(0,6)}"
-            th:with="idx=${week*7 + daySlot}, adj=${idx - dayOffset}"
-            th:classappend="${idx < dayOffset} ? 'empty'">
-          <span th:if="${idx >= dayOffset and adj < days.size()}"
-                th:text="${days[adj]}"></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 
 </body>
+
 </html>

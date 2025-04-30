@@ -2,8 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Ethiopian Leap Year Checker</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <a th:href="@{/}" class="logo">Data <span>Structure</span> & Algorithm</a>
+        </div>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav>
+            <ul class="nav">
+                <li><a th:href="@{/miyazia}">Calendar</a></li>
+                <li><a th:href="@{/to-ethiopian}">Converter</a></li>
+                <li><a th:href="@{/leap}">Leap Year</a></li>
+                <li><a th:href="@{/ethiopian}">Weekday</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
     <h2>Check if a year is a leap year in the Ethiopian Calendar</h2>
 
     <form action="/check" method="post">

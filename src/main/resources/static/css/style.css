@@ -371,12 +371,13 @@ p {
 /* Custom styling for the select dropdown */
 .select-box {
     position: relative;
-    width: 100%;
+    display: inline-block; /* Change to inline-block for resizing */
     margin: 1.5rem 0;
 }
 
 .select-box select {
-    width: 100%;
+    width: auto; /* Change width to auto */
+    min-width: 100%; /* Ensure it doesn't shrink below the original size */
     padding: 1.5rem;
     font-size: 1.6rem;
     color: #fff;
@@ -399,13 +400,13 @@ p {
     pointer-events: none;
 }
 
-/* Ensure label and select are properly aligned */
 .select-box label {
     display: block;
     font-size: 1.4rem;
     color: #fff;
     margin-bottom: 0.5rem;
 }
+
 
 .footer .social {
     text-align: center;
