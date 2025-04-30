@@ -17,7 +17,7 @@ public class ToEthiopianController {
             @RequestParam(required = false) Integer day,
             Model model) {
 
-        // If no date provided, use today
+                
         LocalDate today = LocalDate.now();
         int gYear = (year != null) ? year : today.getYear();
         int gMonth = (month != null) ? month : today.getMonthValue();
@@ -34,6 +34,6 @@ public class ToEthiopianController {
         model.addAttribute("ethDay", ethDate.getDay());
         model.addAttribute("weekday", weekday);
 
-        return "to-ethiopian"; // Refers to templates/to-ethiopian.html
+        return "to-ethiopian"; 
     }
 }

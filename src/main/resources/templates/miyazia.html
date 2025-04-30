@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <!-- <link rel="stylesheet" th:href="@{/css/style.css}"> -->
     <title>Weekdays</title>
+    <script>
+        function validateForm() {
+            var year = document.forms["weekdayForm"]["year"].value;
+            var month = document.forms["weekdayForm"]["month"].value;
+            if (year == "" || month == "") {
+                alert("Both fields must be filled out.");
+                return false;
+            }
+            return true; 
+        }
+    </script>
 </head>
+
 <body>
-    <h1>Weekdays for the Month</h1>
+    <h2>Weekdays for the Month</h2>
+    <section id="contact" class="contact ">
+
+        <form name="weekdayForm" action="/miyazia" method="get" onsubmit="return validateForm()">
+
+            <div class="input-group">
+                <div class="input-box">
+                    <label>Year:</label>
+                    <input type="number" name="year" placeholder="year" required>
+                </div>
+
+            </div>
+            <div class="input-group-2">
+                <div class="input-box">
+                    <label>Month:</label>
+                    <input type="number" name="month" placeholder="month" required>
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+
+            </div>
+        </form>
+    </section>
+
     <ul>
-        <li th:each="day : ${days}" th:text="${day}"></li>
-        <li th:each="weekday : ${weekdays}" th:text="${weekday}"></li>
+        <h2 class="heading">
+            <li th:each="day : ${days}" th:text="${day}"></li>
+            <li th:each="weekday : ${weekdays}" th:text="${weekday}"></li>
+        </h2>
+
     </ul>
 </body>
+
 </html>
