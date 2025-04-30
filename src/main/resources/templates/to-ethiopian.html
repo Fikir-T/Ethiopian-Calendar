@@ -18,29 +18,26 @@
 </head>
 
 <body>
-    <h2>calend<span>ar</span></h2>
-    <!-- <section id="services" class="services"> -->
-        <div th:if="${ethYear}" class="service-container">
-            <!-- <h2>Result</h2> -->
-            <div class="service-box">
-                <p><b>Ethiopian Date: </b> <span th:text="${ weekday } " /> </span> <span th:text="${ethDay}" /> / <span
-                        th:text="${ethMonth}" /> / <span th:text="${ethYear}" /> </p>
-            </div>
-            <div class="service-box">
-                <p><b>Gregorian:</b> <span th:text="${gDay}" /> / <span th:text="${gMonth}" /> / <span
-                        th:text="${gYear}" /></p>
-            </div>
-
+    <header>
+        <div class="logo">
+            <a th:href="@{/}" class="logo">Data <span>Structure</span> & Algorithm</a>
         </div>
-        <h2>
-            <a th:href="@{/to-ethiopian}">
-                <button class="btn">Reset</button>
-            </a>
-        </h2>
-
-    <!-- </section> -->
-    <h2>Gregorian ➡<span>Ethiopian Date Converter</span> </h2>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav>
+            <ul class="nav">
+                <li><a th:href="@{/miyazia}">Calendar</a></li>
+                <li><a th:href="@{/to-ethiopian}">Converter</a></li>
+                <li><a th:href="@{/leap}">Leap Year</a></li>
+                <li><a th:href="@{/ethiopian}">Weekday</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    
+     
+    
     <section id="contact" class="contact">
+        <h2>Gregorian ➡<span>Ethiopian Date Converter</span> </h2>
         <form action="/to-ethiopian" method="get" onsubmit="return validateForm()">
             <div class="input-group-2">
                 <div class="input-box">
@@ -61,6 +58,27 @@
             <!-- </div> -->
         </form>
     </section>
+    <section id="services" class="services"> 
+        <div th:if="${ethYear}" class="service-container">
+            <h2>calend<span>ar</span></h2>
+            <!-- <h2>Result</h2> -->
+            <div class="service-box">
+                <p><b>Ethiopian Date: </b> <span th:text="${ weekday } " /> </span> <span th:text="${ethDay}" /> / <span
+                        th:text="${ethMonth}" /> / <span th:text="${ethYear}" /> </p>
+            </div>
+            <div class="service-box">
+                <p><b>Gregorian:</b> <span th:text="${gDay}" /> / <span th:text="${gMonth}" /> / <span
+                        th:text="${gYear}" /></p>
+            </div>
+
+        </div>
+        <h2>
+            <a th:href="@{/to-ethiopian}">
+                <button class="btn">Reset</button>
+            </a>
+        </h2>
+
+     </section> 
 </body>
 
 </html>

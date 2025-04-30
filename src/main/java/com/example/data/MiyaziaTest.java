@@ -42,7 +42,7 @@ public class MiyaziaTest {
         months.add("ሰኔ");
         months.add("ሐምሌ");
         months.add("ነሃሴ");
-        months.add("ጳጉሜን");
+        months.add("ጳጉሜ");
 
         // Adding months to model
         model.addAttribute("months", months);
