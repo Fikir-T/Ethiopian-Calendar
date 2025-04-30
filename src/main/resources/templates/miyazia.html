@@ -2,52 +2,63 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- <link rel="stylesheet" th:href="@{/css/style.css}"> -->
-    <title>Weekdays</title>
-    <script>
-        function validateForm() {
-            var year = document.forms["weekdayForm"]["year"].value;
-            var month = document.forms["weekdayForm"]["month"].value;
-            if (year == "" || month == "") {
-                alert("Both fields must be filled out.");
-                return false;
-            }
-            return true; 
+    <meta charset="UTF-8">
+    <title>Miyazia Calendar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
         }
-    </script>
+
+        th,
+        td {
+            border: 1px solid #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 14.28%;
+            height: 60px;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .empty {
+            background-color: #eee;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Weekdays for the Month</h2>
-    <section id="contact" class="contact ">
 
-        <form name="weekdayForm" action="/miyazia" method="get" onsubmit="return validateForm()">
+    <h2 style="text-align: center;">የሚያዝያ የኢትዮጵያ ካሌንደር</h2>
 
-            <div class="input-group">
-                <div class="input-box">
-                    <label>Year:</label>
-                    <input type="number" name="year" placeholder="year" required>
-                </div>
+    <table>
+        <thead>
+            <tr>
+                <th>እሁድ</th>
+                <th>ሰኞ</th>
+                <th>ማክሰኞ</th>
+                <th>ረቡዕ</th>
+                <th>ሓሙስ</th>
+                <th>አርብ</th>
+                <th>ቅዳሜ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="i : ${#numbers.sequence(0, totalCells / 7 - 1)}">
+                <td th:each="j : ${#numbers.sequence(0, 6)}"
+                    th:with="index=${i * 7 + j}, adjustedIndex=${index - dayOffset}"
+                    th:classappend="${index < dayOffset} ? 'empty'">
+                    <span th:if="${index >= dayOffset and adjustedIndex < days.size()}"
+                          th:text="${days[adjustedIndex]}">1</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-            </div>
-            <div class="input-group-2">
-                <div class="input-box">
-                    <label>Month:</label>
-                    <input type="number" name="month" placeholder="month" required>
-                    <button type="submit" class="btn">Submit</button>
-                </div>
-
-            </div>
-        </form>
-    </section>
-
-    <ul>
-        <h2 class="heading">
-            <li th:each="day : ${days}" th:text="${day}"></li>
-            <li th:each="weekday : ${weekdays}" th:text="${weekday}"></li>
-        </h2>
-
-    </ul>
 </body>
 
 </html>
