@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Ethiopian Calendar</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -20,12 +22,32 @@
             </ul>
         </nav>
     </header>
-    <h2>Check Ethiopian Weekday</h2>
-    <form action="#" th:action="@{/ethiopian}" method="post">
-        <label>Year: <input type="number" name="year" required /></label><br/>
-        <label>Month: <input type="number" name="month" required /></label><br/>
-        <label>Day: <input type="number" name="day" required /></label><br/>
-        <button type="submit">Find Weekday</button>
-    </form>
+    <section class="contact" id="contact">
+        <h2>Check Ethiopian Weekday</h2>
+
+        <form action="#" th:action="@{/ethiopian}" method="post">
+            <div class="input-group-2">
+                <div class="input-box">
+                    <label>Day: <input type="number" name="day" required /></label>
+                    
+                    <label>Month: <input type="number" name="month" required /></label>
+                    
+                    
+                </div>
+            </div>
+            <br>
+            <div fianlclass="input-group-2">
+                <div class="input-box">
+                    <label>Year: <input type="number" name="year" required /></label>
+                </div>
+            </div>
+            <button type="submit" class="btn">submit</button>
+        </form>
+
+
+    </section>
+
+
 </body>
+
 </html>

@@ -45,10 +45,12 @@ public class MiyaziaTest {
         months.add("ጳጉሜ");
 
         // Adding months to model
-        model.addAttribute("months", months);
+        
         LocalDate today = LocalDate.now();
         ToEthiopian.EthiopianDate etdate = ToEthiopian.getEthiopianDate(today.getYear(), today.getMonthValue(),
                 today.getDayOfMonth());
+        ToEthiopian.EthiopianDate etdate2 = ToEthiopian.getEthiopianDate(today.getYear(), today.getMonthValue(),
+        today.getDayOfMonth());
         if (year == null) {
             year = etdate.getYear();
         }
@@ -77,6 +79,9 @@ public class MiyaziaTest {
             days.add(day);
             entries.add(new DayEntry(day, weekday));
         }
+        int kenu = etdate2.getDay();
+        String yekenusm = EthiopianCalendar.getWeekday(etdate2.getYear(), etdate2.getMonth(), etdate2.getDay());
+
 
         int offset = EthiopianCalendar.getDayOffset(year, month);
         int totalCells = (int) Math.ceil((offset + ken) / 7.0) * 7;
@@ -87,6 +92,9 @@ public class MiyaziaTest {
         model.addAttribute("totalCells", totalCells);
         model.addAttribute("selectedYear", year);
         model.addAttribute("selectedMonth", month);
+        model.addAttribute("months", months);
+        model.addAttribute("kenu", kenu);
+        model.addAttribute("yekenusm", yekenusm);
         return "miyazia";
     }
 }

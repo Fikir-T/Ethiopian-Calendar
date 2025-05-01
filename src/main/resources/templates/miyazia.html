@@ -85,7 +85,10 @@
     <section id="contact" class="contact">
         <h2 style="text-align: center;">Calen<span>dar</span></h2>
         <h2>
-            <a th:href="@{/to-ethiopian}">
+            <div class="service-box">
+                <p><b>Ethiopian Date: </b> <span th:text="${ yekenusm } " /> </span> <span th:text="${kenu}" />  </p>
+            </div>
+            <a th:href="@{/miyazia}">
                 <button class="btn">Reset</button>
             </a>
         </h2>
@@ -121,7 +124,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="biggerfont" th:each="week : ${#numbers.sequence(0, totalCells/7 - 1)}">
+                <tr  th:each="week : ${#numbers.sequence(0, totalCells/7 - 1)}">
                     <td th:each="daySlot : ${#numbers.sequence(0,6)}"
                         th:with="idx=${week*7 + daySlot}, adj=${idx - dayOffset}"
                         th:classappend="${idx < dayOffset} ? 'empty'">
