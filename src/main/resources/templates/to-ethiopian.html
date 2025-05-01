@@ -37,6 +37,25 @@
      
     
     <section id="contact" class="contact">
+        <div th:if="${ethYear}" class="service-container">
+            <div class="service-box">
+                <p><b>Ethiopian Date: </b> <span th:text="${ weekday } " /> </span> <span th:text="${ethDay}" /> / <span
+                        th:text="${ethMonth}" /> / <span th:text="${ethYear}" /> </p>
+            </div>
+            <div class="service-box">
+                <p><b>Gregorian:</b> <span th:text="${gDay}" /> / <span th:text="${gMonth}" /> / <span
+                        th:text="${gYear}" /></p>
+            </div>
+
+        </div>
+        <div>
+            <h2> 
+                <a th:href="@{/to-ethiopian}">
+                    <button class="btn">Reset</button>
+                </a>
+            </h2>
+         </div>
+        
         <h2>Gregorian ➡<span>Ethiopian Date Converter</span> </h2>
         <form action="/to-ethiopian" method="get" onsubmit="return validateForm()">
             <div class="input-group-2">
@@ -56,29 +75,14 @@
                 </div>
             </div>
             <!-- </div> -->
+             
+            
         </form>
     </section>
-    <section id="services" class="services"> 
-        <div th:if="${ethYear}" class="service-container">
-            <h2>calend<span>ar</span></h2>
-            <!-- <h2>Result</h2> -->
-            <div class="service-box">
-                <p><b>Ethiopian Date: </b> <span th:text="${ weekday } " /> </span> <span th:text="${ethDay}" /> / <span
-                        th:text="${ethMonth}" /> / <span th:text="${ethYear}" /> </p>
-            </div>
-            <div class="service-box">
-                <p><b>Gregorian:</b> <span th:text="${gDay}" /> / <span th:text="${gMonth}" /> / <span
-                        th:text="${gYear}" /></p>
-            </div>
+    <!-- <section id="services" class="services"> 
+        
 
-        </div>
-        <h2>
-            <a th:href="@{/to-ethiopian}">
-                <button class="btn">Reset</button>
-            </a>
-        </h2>
-
-     </section> 
+     </section>  -->
 </body>
 
 </html>

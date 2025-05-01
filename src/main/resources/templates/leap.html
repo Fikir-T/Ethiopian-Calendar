@@ -20,7 +20,8 @@
             </ul>
         </nav>
     </header>
-    <h2>Check if a year is a leap year in the Ethiopian Calendar</h2>
+    <section>
+        <h2>Leap year Checker</h2>
 
     <form action="/check" method="post">
         <label for="year">Enter Ethiopian year:</label>
@@ -29,5 +30,7 @@
     </form>
 
     <p th:if="${result != null}" th:text="${result}"></p>
+    </section>
+    
 </body>
 </html>

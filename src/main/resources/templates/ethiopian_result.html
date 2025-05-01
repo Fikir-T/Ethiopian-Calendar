@@ -20,8 +20,13 @@
             </ul>
         </nav>
     </header>
-    <h2>Result</h2>
+    <section>
+        <h2>Result</h2>
     <p th:text="'Ethiopian date ' + ${date} + ' is  ' + ${weekday}">Result here</p>
-    <a th:href="@{/ethiopian}">Back</a>
+    <a th:href="@{/ethiopian}">
+        <button class="btn">Back</button>
+    </a>
+    </section>
+    
 </body>
 </html>
