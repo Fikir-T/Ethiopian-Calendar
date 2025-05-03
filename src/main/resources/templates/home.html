@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let menu = document.querySelector('#menu-icon');
+            let navbar = document.querySelector('.nav');
+
+            menu.onclick = () => {
+                menu.classList.toggle('bx-x');
+                navbar.classList.toggle('active');
+            };
+
+            window.onscroll = () => {
+                menu.classList.remove('bx-x');
+                navbar.classList.remove('active');
+            };
+        });
+    </script>
 </head>
 <body>
     <h2>

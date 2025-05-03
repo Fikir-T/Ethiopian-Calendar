@@ -524,6 +524,23 @@ p {
         font-size: 50%;
     }
 }
+@media (max-width: 768px) {
+    .nav {
+      display: none;
+      flex-direction: column;
+      background: #0a0f1c;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      padding: 1rem;
+      border-radius: 8px;
+      z-index: 999;
+    }
+
+    .nav.active {
+      display: flex;
+    }
+}
 
 
 /* From Uiverse.io by Tsiangana */ 
