@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Ethiopian Leap Year Checker</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -20,17 +22,21 @@
             </ul>
         </nav>
     </header>
-    <section>
+    <section class="contact" id="contact">
         <h2>Leap year Checker</h2>
 
-    <form action="/check" method="post">
-        <label for="year">Enter Ethiopian year:</label>
-        <input type="number" id="year" name="year" required>
-        <button type="submit">Check</button>
-    </form>
+        <form action="/check" method="post">
+            <div class="input-box">
+                <label for="year">Enter Ethiopian year:</label>
+                <input type="number" id="year" name="year" required>
+            </div>
 
-    <p th:if="${result != null}" th:text="${result}"></p>
+            <button class="btn" type="submit">Check</button>
+        </form>
+
+        <p th:if="${result != null}" th:text="${result}"></p>
     </section>
-    
+
 </body>
+
 </html>
