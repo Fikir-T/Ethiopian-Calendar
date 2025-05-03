@@ -3,8 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- <script defer th:src="@{/scriptt.js}"></script> -->
     <title>Calendar</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let menu = document.querySelector('#menu-icon');
+            let navbar = document.querySelector('.nav');
+
+            menu.onclick = () => {
+                menu.classList.toggle('bx-x');
+                navbar.classList.toggle('active');
+            };
+
+            window.onscroll = () => {
+                menu.classList.remove('bx-x');
+                navbar.classList.remove('active');
+            };
+        });
+    </script>
     <script>
         function validateForm() {
             var year = document.forms["weekdayForm"]["year"].value;
@@ -34,7 +58,7 @@
 
         td span {
             font-size: 18px;
-            
+
             font-weight: bold;
             color: #ffffff;
             /* Optional: ensures visibility */
@@ -64,6 +88,7 @@
             margin: 0 5px;
         } */
     </style>
+
 </head>
 
 <body>
@@ -86,7 +111,7 @@
         <h2 style="text-align: center;">Calen<span>dar</span></h2>
         <h2>
             <div class="service-box">
-                <p><b>Ethiopian Date: </b> <span th:text="${ yekenusm } " /> </span> <span th:text="${kenu}" />  </p>
+                <p><b>Ethiopian Date: </b> <span th:text="${ yekenusm } " /> </span> <span th:text="${kenu}" /> </p>
             </div>
             <a th:href="@{/miyazia}">
                 <button class="btn">Reset</button>
@@ -124,7 +149,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr  th:each="week : ${#numbers.sequence(0, totalCells/7 - 1)}">
+                <tr th:each="week : ${#numbers.sequence(0, totalCells/7 - 1)}">
                     <td th:each="daySlot : ${#numbers.sequence(0,6)}"
                         th:with="idx=${week*7 + daySlot}, adj=${idx - dayOffset}"
                         th:classappend="${idx < dayOffset} ? 'empty'">
@@ -134,8 +159,6 @@
             </tbody>
         </table>
     </section>
-
-
 </body>
 
 </html>

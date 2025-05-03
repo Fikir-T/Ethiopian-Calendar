@@ -4,16 +4,37 @@
 <head>
     <title>Gregorian to Ethiopian Date Converter</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
         function validateForm() {
             var year = document.forms["weekdayForm"]["year"].value;
             var month = document.forms["weekdayForm"]["month"].value;
             if (year == "" || month == "") {
                 alert("Both fields must be filled out.");
-                return false; 
+                return false;
             }
-            return true; 
+            return true;
         }
+    </script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let menu = document.querySelector('#menu-icon');
+            let navbar = document.querySelector('.nav');
+
+            menu.onclick = () => {
+                menu.classList.toggle('bx-x');
+                navbar.classList.toggle('active');
+            };
+
+            window.onscroll = () => {
+                menu.classList.remove('bx-x');
+                navbar.classList.remove('active');
+            };
+        });
     </script>
 </head>
 
@@ -33,9 +54,9 @@
             </ul>
         </nav>
     </header>
-    
-     
-    
+
+
+
     <section id="contact" class="contact">
         <div th:if="${ethYear}" class="service-container">
             <div class="service-box">
@@ -49,34 +70,34 @@
 
         </div>
         <div>
-            <h2> 
+            <h2>
                 <a th:href="@{/to-ethiopian}">
                     <button class="btn">Reset</button>
                 </a>
             </h2>
-         </div>
-        
+        </div>
+
         <h2>Gregorian ➡<span>Ethiopian Date Converter</span> </h2>
         <form action="/to-ethiopian" method="get" onsubmit="return validateForm()">
             <div class="input-group-2">
                 <div class="input-box">
                     <label>Day:</label>
-                    <input type="number" name="day" placeholder="Day" required/>
+                    <input type="number" name="day" placeholder="Day" required />
                     <label>Month:</label>
-                    <input type="number" name="month" placeholder="Month" required/>
+                    <input type="number" name="month" placeholder="Month" required />
                 </div>
             </div>
             <div class="input-group-2">
                 <div class="input-box">
                     <label>Year:</label>
-                    <input type="number" name="year" placeholder="Year" required/>
-                    
+                    <input type="number" name="year" placeholder="Year" required />
+
                     <button type="submit" class="btn">Convert</button>
                 </div>
             </div>
             <!-- </div> -->
-             
-            
+
+
         </form>
     </section>
     <!-- <section id="services" class="services"> 
