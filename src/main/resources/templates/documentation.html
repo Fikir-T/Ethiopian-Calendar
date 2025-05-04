@@ -2,16 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Documentation</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <title>Documentation</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <script defer th:src="@{/js/copy.js}"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 
+    <style>
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 1rem;
+            /* overflow-x: auto; */
+            border-radius: 5px;
+            font-size: larger !important;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            font-size: larger !important;
+        }
+
+        h2 {
+            font-size: large;
+        }
+
+        li {
+            font-size: medium;
+        }
+
+        p {
+            font-size: medium;
+        }
+    </style>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             let menu = document.querySelector('#menu-icon');
             let navbar = document.querySelector('.nav');
@@ -27,10 +57,10 @@
             };
         });
     </script>
-    
 </head>
 
 <body>
+
     <header>
         <div class="logo">
             <a th:href="@{/}" class="logo">Data <span>Structure</span> & Algorithm</a>
@@ -42,26 +72,176 @@
                 <li><a th:href="@{/to-ethiopian}">Converter</a></li>
                 <li><a th:href="@{/leap}">Leap Year</a></li>
                 <li><a th:href="@{/ethiopian}">Weekday</a></li>
-                <!-- <li><a href="#contact">Contact</a></li> -->
+                <li><a th:href="@{/documentation}">Documentation</a></li>
             </ul>
         </nav>
     </header>
     <section>
-       <p>
-        so this is the documentation huh!
-        this project is done using spring boot and thymeleaf for rendering and java for backend and html css for frontend.
+        <h2>Documentation</h2>
+               <p>
+            This project is a web-based application that implements the Ethiopian calendar system using Java and the Spring Boot framework. The Ethiopian calendar, also known as the Ge'ez calendar, is a unique timekeeping system with distinct features, such as 13 months (12 months of 30 days each and a 13th month with 5 or 6 days depending on the year). This application is designed to provide accurate calendar computations, including date conversions between the Ethiopian and Gregorian calendars, leap year calculations, and other calendar-specific functionalities. 
+            The project emphasizes high performance by leveraging efficient algorithms to minimize memory usage and computation time, ensuring scalability and reliability for real-world use cases.
+        </p>
+        <h1>📅 Weekday String Array</h1>
+        <pre><code class="language-java">
+        private static final String[] WEEKDAYS = {
+            "ሰኞ", "ማክሰኞ", "ረቡዕ", "ሓሙስ", "አርብ", "ቅዳሜ", "እሁድ"
+        };
+        </code></pre>
+        <p>
+            This array maps each weekday index (0 through 6) to its corresponding Amharic weekday name.
+            Accessing any day is a constant-time operation using array indexing.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(1)</code></p>
 
-       </p>
-       <section class="service-box">
+        <h1>📆 Julian Day Number (JDN) Conversion</h1>
+        <pre><code class="language-java">
+        public static int toJulianDayNumber(int year, int month, int day) {
+            return 1723856 + 365 * year + (year / 4) + 30 * month + day - 31;
+        }
+        </code></pre>
+
+        <h2>🧠 What Is Julian Day Number?</h2>
+        <p>
+            The <strong>Julian Day Number</strong> is a continuous count of days since the beginning of the Julian
+            Epoch: **January 1, 4713 BCE**.
+            It is widely used in astronomy and calendar computations because it allows easy comparison between dates by
+            converting them into a single integer.
+        </p>
+        <p>
+            In this context, we use the JDN as an intermediate representation of dates—both Gregorian and Ethiopian—so
+            we can perform calendar transformations by simply doing arithmetic on integers.
+        </p>
+
+        <h2>⚙️ Algorithm Explanation</h2>
+        <ul>
+            <li><code>1723856</code>: This is the Julian Day Number of Meskerem 1, Year 1 in the Ethiopian calendar (the
+                Ethiopian epoch).</li>
+            <li><code>365 * year</code>: Adds the total number of days from complete years.</li>
+            <li><code>year / 4</code>: Accounts for leap years (1 extra day every 4 years).</li>
+            <li><code>30 * month</code>: Adds full months (Ethiopian months have 30 days each).</li>
+            <li><code>day - 31</code>: Adjusts for the offset in the epoch base.</li>
+        </ul>
+
+        <h2>📈 Time Complexity</h2>
+        <p>All operations are arithmetic and constant in time.</p>
+        <p><strong>Big O:</strong> <code>O(1)</code></p>
+
+        <h1>📅 Get Weekday from Date</h1>
+        <pre><code class="language-java">
+        public static String getWeekday(int year, int month, int day) {
+            int jdn = toJulianDayNumber(year, month, day);
+            int weekdayIndex = ((jdn % 7) + 7) % 7;
+            return WEEKDAYS[weekdayIndex];
+        }
+        </code></pre>
+        <p>
+            This function calculates the Julian Day Number of the given Ethiopian date and maps it to a weekday using
+            modulo 7 arithmetic.
+            The double modulo ensures the result is non-negative.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(1)</code></p>
+
+        <h1>🌟 Leap Year Check</h1>
+        <pre><code class="language-java">
+        public static boolean isLeapYear(int year) {
+            return (year + 1) % 4 == 0;
+        }
+        </code></pre>
+        <p>
+            The Ethiopian calendar has a 4-year leap cycle. Every 4th year (after adding 1), the year is considered a
+            leap year.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(1)</code></p>
+
+        <h1>🔄 Spring Leap Year Controller</h1>
+        <pre><code class="language-java">
+        public String checkLeapYear(@RequestParam("year") int year, Model model) {
+            boolean isLeap = (year + 1) % 4 == 0;
+            String result = isLeap ? year + " is a leap year in the Ethiopian calendar." 
+                                : year + " is not a leap year in the Ethiopian calendar.";
+            model.addAttribute("result", result);
+            return "leap";
+        }
+        </code></pre>
+        <p>
+            Handles user input via HTTP request and returns a view with the leap year result.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(1)</code></p>
+
+        <h1>📆 Generating Days and Weekdays</h1>
+        <pre><code class="language-java">
+        for (int day = 1; day <= ken; day++) {
+            String weekday = EthiopianCalendar.getWeekday(year, month, day);
+            weekdays.add(weekday);
+            days.add(day);
+            entries.add(new DayEntry(day, weekday));
+        }
+        </code></pre>
+        <p>
+            Iterates through the days in a month and associates each with its weekday.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(n)</code>, where <code>n</code> is the number of days (typically
+            30)</p>
+
+        <h1>🌍 Gregorian to Julian Date Conversion</h1>
+        <pre><code class="language-java">
+        private static int toJulianDayNumber(int year, int month, int day) {
+            int a = (14 - month) / 12;
+            int y = year + 4800 - a;
+            int m = month + 12 * a - 3;
+
+            return day + (153 * m + 2) / 5
+                    + 365 * y
+                    + (y / 4)
+                    - (y / 100)
+                    + (y / 400)
+                    - 32045;
+        }
+        </code></pre>
+        <p>
+            This version of <code>toJulianDayNumber</code> is for converting **Gregorian** dates to JDN. It uses the
+            classic astronomical method involving month shifting and leap year corrections.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(1)</code></p>
+
+        <h1>📆 Gregorian to Ethiopian Date Conversion</h1>
+        <pre><code class="language-java">
         public static EthiopianDate getEthiopianDate(int gYear, int gMonth, int gDay) {
             int todayJDN = toJulianDayNumber(gYear, gMonth, gDay);
+            int daysSinceEpoch = todayJDN - ETHIOPIAN_EPOCH_JDN;
+
+            int fourYearCycles = daysSinceEpoch / 1461;
+            int daysLeft = daysSinceEpoch % 1461;
+
+            int ethYear = 4 * fourYearCycles + daysLeft / 365;
+            int dayOfYear = daysLeft % 365;
+
+            int ethMonth = dayOfYear / 30 + 1;
+            int ethDay = dayOfYear % 30 + 1;
+
+            return new EthiopianDate(ethYear, ethMonth, ethDay);
         }
-       </section>
+        </code></pre>
+        <p>
+            Converts a Gregorian date into an Ethiopian date by calculating the number of days since the Ethiopian
+            epoch, then using integer division and modulo to extract Ethiopian year, month, and day.
+        </p>
+        <p><strong>Time Complexity:</strong> <code>O(1)</code></p>
 
     </section>
-
-
-
+    <footer class="footer">
+        <div class="social">
+            <a href="#"><i
+                    class='bx bxl-tiktok'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+            <a href="#"><i
+                    class='bx bxl-facebook'></i></a>
+            <p class="copyright">
+                &copy; 2025 Data Structure & Algorithm | All rights reserved.
+            </p>
+    </footer>
 </body>
 
 </html>
