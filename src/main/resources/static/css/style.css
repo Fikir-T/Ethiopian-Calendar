@@ -167,11 +167,11 @@ span {
 }
 h2 {
     text-align: center;
-    font-size: 6.5rem;
+    font-size: larger;
 }
 p {
-    font-size: 25px;
-    font-weight: 700;
+    font-size: medium;
+    /* font-weight: 700; */
     margin-bottom: 10px;
     line-height: 1.4;
     /* flex-grow: 1;
@@ -625,7 +625,7 @@ p {
     }
   }
   
-  .code-box {
+  /* .code-box {
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     padding: 16px;
@@ -650,7 +650,7 @@ p {
 .code-box code {
     font-family: 'Courier New', Courier, monospace;
     white-space: pre-wrap;
-}
+} */
 
 
 
@@ -730,17 +730,17 @@ p {
     padding-left: 10px;
   }
   
-  .card .footer .code {
+  .card .footer  {
     display: flex;
     align-items: center;
   }
   
-  .card .footer .code .icon {
+  .card .footer .icon {
     color: rgb(244, 114, 182);
     padding-top: 3px;
   }
   
-  .card .footer .code .text {
+  .card .footer.text {
     padding-left: 3px;
     color: #f8fafc;
   }
